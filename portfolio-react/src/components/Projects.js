@@ -91,7 +91,6 @@ const Projects = () => {
       <div className="projects-container">
         <div className="header">
           <h1>Projects: Extended</h1>
-          <p>A detailed showcase of my most significant technical achievements</p>
         </div>
 
         <div className="projects-grid">
