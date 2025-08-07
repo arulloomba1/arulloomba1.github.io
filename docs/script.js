@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
         neofetch: () => {
             let currentTime = new Date().toLocaleTimeString();
             return `<pre>
-        <span class="blue">      /\\      </span>  User: arulloomba
-        <span class="blue">     /  \\     </span>  OS: Arch Linux
-        <span class="blue">    /    \\    </span>  Hostname: arulloomba.github.io
-        <span class="blue">   /  /\\  \\   </span>  Time: ${currentTime}
-        <span class="blue">  /  (--)  \\  </span>  Email: <a href="mailto:arulloomba@berkeley.edu" class="custom-link">arulloomba@berkeley.edu</a>
-        <span class="blue"> /  /    \\  \\ </span>  GitHub: <a href="https://GitHub.com/arulloomba1" target="_blank" class="custom-link">GitHub.com/arulloomba1</a>
-        <span class="blue">/___\\    /___\\</span>  LinkedIn: <a href="https://LinkedIn.com/in/arul-loomba" target="_blank" class="custom-link">LinkedIn.com/in/arul-loomba</a>
+        <span>      /\\      </span>  User: arulloomba
+        <span>     /  \\     </span>  OS: Arch Linux
+        <span>    /    \\    </span>  Hostname: arulloomba.github.io
+        <span>   /  /\\  \\   </span>  Time: ${currentTime}
+        <span>  /  (--)  \\  </span>  Email: <a href="mailto:arulloomba@berkeley.edu" class="custom-link">arulloomba@berkeley.edu</a>
+        <span> /  /    \\  \\ </span>  GitHub: <a href="https://GitHub.com/arulloomba1" target="_blank" class="custom-link">GitHub.com/arulloomba1</a>
+        <span>/___\\    /___\\</span>  LinkedIn: <a href="https://LinkedIn.com/in/arul-loomba" target="_blank" class="custom-link">LinkedIn.com/in/arul-loomba</a>
         </pre>`;
         },
 
