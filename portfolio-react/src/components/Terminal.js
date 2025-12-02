@@ -267,8 +267,8 @@ const Terminal = () => {
                       position: 'absolute',
                       visibility: 'hidden',
                       whiteSpace: 'pre',
-                      fontFamily: '"Fira Code", monospace',
-                      fontSize: '18px'
+                      fontFamily: '"Times New Roman", Times, serif',
+                      fontSize: '14px'
                     }}
                   />
                   <input

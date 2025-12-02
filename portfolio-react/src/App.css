@@ -7,11 +7,12 @@
 body {
   background: #000000;
   color: #ffffff;
-  font-family: "Fira Code", monospace;
+  font-family: "Times New Roman", Times, serif;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-size: 14px;
 }
 
 .App {
@@ -44,8 +45,8 @@ a:hover {
 .custom-link {
   color: #ffffff !important;
   text-decoration: underline;
-  font-weight: bold;
-  font-size: 1.1em;
+  font-weight: normal;
+  font-size: 14px;
 }
 
 .custom-link:hover {

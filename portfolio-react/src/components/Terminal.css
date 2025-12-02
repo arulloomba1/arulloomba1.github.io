@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
-
 .terminal-page {
   background: #000000;
   color: #ffffff;
-  font-family: "Fira Code", monospace;
+  font-family: "Times New Roman", Times, serif;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -29,9 +27,10 @@
 /* Terminal Container */
 #terminal-container {
   background: #000000;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  padding: 25px;
   backdrop-filter: blur(10px);
   min-width: 800px;
   max-width: 800px;
@@ -87,8 +86,8 @@
   background: transparent;
   border: none;
   color: #ffffff;
-  font-size: 18px;
-  font-family: "Fira Code", monospace;
+  font-size: 14px;
+  font-family: "Times New Roman", Times, serif;
   outline: none;
   white-space: pre;
   width: 100%;
@@ -100,24 +99,26 @@
 }
 #autocompleteHint {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 18px;
+  font-size: 14px;
   position: absolute;
   top: 0;
   white-space: pre;
   pointer-events: none;
   z-index: 1;
+  font-family: "Times New Roman", Times, serif;
 }
 .prompt {
   color: #ffffff;
-  font-weight: bold;
-  margin-right: 5px;
+  font-weight: normal;
+  margin-right: 8px;
+  font-size: 14px;
 }
 input {
   background: transparent;
   border: none;
   color: #ffffff;
-  font-family: "Fira Code", monospace;
-  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
   width: 100%;
   outline: none;
 }
@@ -132,15 +133,17 @@ input {
 }
 
 .help-message {
-  opacity: 0.6;
+  opacity: 0.7;
   font-style: italic;
   padding-bottom: 10px;
   color: #ffffff !important;
+  font-size: 13px;
 }
 
 .command-line {
   margin-top: 10px;
   color: #ffffff !important;
+  font-size: 14px;
 }
 
 .command-line * {
@@ -150,6 +153,8 @@ input {
 .command-result {
   margin-left: 20px;
   color: #ffffff !important;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .command-result * {
@@ -187,8 +192,8 @@ input {
 .custom-link {
   color: #ffffff !important;
   text-decoration: underline;
-  font-weight: bold;
-  font-size: 1.1em;
+  font-weight: normal;
+  font-size: 14px;
 }
 
 /* Force all text in terminal to be white */
@@ -247,9 +252,9 @@ input {
 #command-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
   flex: 1 1 300px;
-  max-width: 350px;
+  max-width: 400px;
   align-self: stretch;
   align-items: flex-start;
   height: 600px;
@@ -261,16 +266,16 @@ input {
   background: #ffffff;
   border: 1px solid #000000;
   color: #000000;
-  font-family: "Fira Code", monospace;
-  font-weight: bold;
-  padding: 15px 20px;
-  border-radius: 8px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: normal;
+  padding: 18px 24px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
-  font-size: 1.1em;
-  min-width: 120px;
-  height: 55px;
+  font-size: 15px;
+  min-width: 140px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
