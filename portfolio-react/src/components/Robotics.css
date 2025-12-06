@@ -1,0 +1,117 @@
+:root {
+  --header-height: 60px;
+}
+
+.robotics-page {
+  background: #000000;
+  color: #ffffff;
+  font-family: "Times New Roman", Times, serif;
+  min-height: calc(100vh - var(--header-height));
+  padding-top: 0;
+}
+
+.robotics-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.robotics-header {
+  text-align: center;
+  margin-top: calc(var(--header-height) + 2px);
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  padding: 20px 30px;
+}
+
+.robotics-header h1 {
+  color: #ffffff;
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.robotics-header p {
+  color: #ffffff;
+  opacity: 0.7;
+  font-size: 1.2em;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 0;
+  margin-top: 0;
+  width: 100%;
+  grid-auto-flow: row dense;
+  grid-auto-rows: min-content;
+  align-items: start;
+}
+
+.video-item {
+  width: 100%;
+  background: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-item video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Position videos to fill space better - create varied layout */
+.video-item:nth-child(3n+1) {
+  grid-row: span 1;
+}
+
+.video-item:nth-child(3n+2) {
+  grid-row: span 1;
+}
+
+.video-item:nth-child(3n) {
+  grid-row: span 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .videos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .robotics-header {
+    padding: 15px 20px;
+  }
+
+  .robotics-header h1 {
+    font-size: 2.5em;
+  }
+
+  .robotics-header p {
+    font-size: 1em;
+  }
+
+  .videos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .robotics-header h1 {
+    font-size: 2em;
+    letter-spacing: 1px;
+  }
+}

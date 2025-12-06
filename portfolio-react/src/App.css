@@ -22,10 +22,14 @@ body {
   flex-direction: column;
 }
 
+:root {
+  --header-height: 60px;
+}
+
 .main-content {
   flex: 1;
-  margin-top: 70px;
-  min-height: calc(100vh - 70px);
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
   position: relative;
   z-index: 1;
 }

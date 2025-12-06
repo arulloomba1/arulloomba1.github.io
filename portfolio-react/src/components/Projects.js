@@ -3,14 +3,12 @@ import { Link } from 'react-router-dom';
 import './Projects.css';
 
 const Projects = () => {
-
-  
   const projects = [
     {
       id: 1,
       title: "Voice Recognition and Object Detection Model",
       description: "Advanced computer vision and voice synthesis system combining YOLO-v8 object detection with FPGA-based voice processing.",
-      image: "https://via.placeholder.com/600x400/333/ffffff?text=Voice+Recognition",
+      image: "https://via.placeholder.com/400x250/333/ffffff?text=Voice+Recognition",
       features: [
         "Developed YOLO-v8 model for 250+ household objects detection",
         "Implemented Voice Synthesis on FPGA using Verilog",
@@ -22,7 +20,7 @@ const Projects = () => {
       id: 2,
       title: "RISC-V Neural Network",
       description: "Low-level neural network implementation at the assembly level with practical applications in stock market analysis.",
-      image: "https://via.placeholder.com/600x400/333/ffffff?text=RISC-V+Neural+Network",
+      image: "https://via.placeholder.com/400x250/333/ffffff?text=RISC-V+Neural+Network",
       features: [
         "Implemented matrix multiplication and ReLu in assembly",
         "Designed memory-efficient architecture with 10+ caches",
@@ -34,7 +32,7 @@ const Projects = () => {
       id: 3,
       title: "MAE Encoder Pipeline",
       description: "Advanced triple-stream Masked-Autoencoder for multimodal data processing and analysis.",
-      image: "https://via.placeholder.com/600x400/333/ffffff?text=MAE+Encoder+Pipeline",
+      image: "https://via.placeholder.com/400x250/333/ffffff?text=MAE+Encoder+Pipeline",
       features: [
         "Engineered triple-stream architecture for visual and proprioceptive data",
         "Processed 500+GB of training data",
@@ -48,7 +46,7 @@ const Projects = () => {
       id: 4,
       title: "Mujoco Simulator Robot Arm",
       description: "Comprehensive robot arm simulation and data collection system with multiple environment support.",
-      image: "https://via.placeholder.com/600x400/333/ffffff?text=Mujoco+Robot+Arm",
+      image: "https://via.placeholder.com/400x250/333/ffffff?text=Mujoco+Robot+Arm",
       features: [
         "Designed data collection pipeline with inverse-kinematics",
         "Implemented end-effector joint calculations",
@@ -63,7 +61,7 @@ const Projects = () => {
       id: 5,
       title: "Snek Game",
       description: "Feature-rich snake game with extensive customization options and cross-platform support.",
-      image: "https://via.placeholder.com/600x400/333/ffffff?text=Snek+Game",
+      image: "https://via.placeholder.com/400x250/333/ffffff?text=Snek+Game",
       features: [
         "Developed 1000+ lines of C/C++ code with custom game mechanics",
         "Created 30+ unique snake characters and 75+ modular map layouts",
@@ -75,7 +73,7 @@ const Projects = () => {
       id: 6,
       title: "S1XT33N Voice-Controlled Robot Car",
       description: "Autonomous vehicle system with voice command recognition and custom circuit design for optimal performance.",
-      image: "https://via.placeholder.com/600x400/333/ffffff?text=S1XT33N+Robot+Car",
+      image: "https://via.placeholder.com/400x250/333/ffffff?text=S1XT33N+Robot+Car",
       features: [
         "Developed voice-activated control system with 4+ command recognition",
         "Designed and implemented custom motor controller and power management circuits",
@@ -89,13 +87,13 @@ const Projects = () => {
   return (
     <div className="projects-page">
       <div className="projects-container">
-        <div className="header">
+        <div className="projects-header">
           <h1>Projects: Extended</h1>
         </div>
 
-        <div className="projects-grid">
+        <div className="projects-list">
           {projects.map(project => (
-            <div key={project.id} className="project-card">
+            <Link key={project.id} to={`/projects/${project.id}`} className="project-card">
               <div className="project-image">
                 <img src={project.image} alt={project.title} />
               </div>
@@ -103,32 +101,13 @@ const Projects = () => {
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
                 <ul>
-                  {project.features.map((feature, index) => (
+                  {project.features.slice(0, 3).map((feature, index) => (
                     <li key={index}>{feature}</li>
                   ))}
                 </ul>
-                <div className="project-links">
-                  {project.hasDemo && (
-                    <a 
-                      href={project.demoUrl || "mae_demos.html"} 
-                      target={project.demoUrl ? "_blank" : "_self"}
-                      rel={project.demoUrl ? "noopener noreferrer" : ""}
-                    >
-                      View Project Demo
-                    </a>
-                  )}
-                  {project.hasProject && (
-                    <a 
-                      href={project.projectUrl} 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Project
-                    </a>
-                  )}
-                </div>
+                <div className="project-link-text">Click to view details →</div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
