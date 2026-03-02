@@ -1,29 +1,27 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #000000;
-  color: #ffffff;
-  font-family: "Times New Roman", Times, serif;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  font-size: 14px;
+:root {
+  --header-height: 64px;
+  --max-width: 1200px;
+  --color-bg: #ffffff;
+  --color-surface: #f5f5f5;
+  --color-surface-2: #eeeeee;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-hover: rgba(0, 0, 0, 0.15);
+  --color-text: #111111;
+  --color-text-secondary: rgba(0, 0, 0, 0.55);
+  --color-text-tertiary: rgba(0, 0, 0, 0.35);
+  --color-accent: #6366f1;
+  --color-accent-2: #8b5cf6;
+  --color-glow: rgba(99, 102, 241, 0.15);
+  --font-mono: 'IBM Plex Mono', monospace;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .App {
   min-height: 100vh;
-  background: #000000;
+  background: var(--color-bg);
   display: flex;
   flex-direction: column;
-}
-
-:root {
-  --header-height: 60px;
 }
 
 .main-content {
@@ -34,61 +32,25 @@ body {
   z-index: 1;
 }
 
-/* Global link styles */
 a {
-  color: #ffffff;
+  color: var(--color-text);
   text-decoration: none;
+  transition: opacity var(--transition);
 }
 
 a:hover {
-  color: #ffffff;
-  text-decoration: none;
+  opacity: 0.7;
 }
 
-/* Custom link class for terminal output */
-.custom-link {
-  color: #ffffff !important;
-  text-decoration: underline;
-  font-weight: normal;
-  font-size: 14px;
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: #fff;
 }
 
-.custom-link:hover {
-  color: #ffffff !important;
-  text-decoration: underline;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Utility: subtle gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #111111 0%, #6366f1 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

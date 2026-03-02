@@ -1,318 +1,326 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import './ProjectDetail.css';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] },
+  }),
+};
 
 const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const projects = {
-    1: {
-      id: 1,
-      title: "Voice Recognition and Object Detection Model",
-      description: "Advanced computer vision and voice synthesis system combining YOLO-v8 object detection with FPGA-based voice processing.",
-      fullDescription: `This project represents a comprehensive integration of computer vision and voice processing technologies. The system combines state-of-the-art object detection capabilities with real-time voice synthesis, creating an innovative conferencing application that can identify and describe objects in the environment.
+    veevo: {
+      title: 'CVD Survival Modeling Engine',
+      org: 'Veevo Health — Founding ML Engineer',
+      description: 'An advanced nonlinear survival modeling engine that combines Fine-Gray competing-risk analysis with deep architectures to forecast lifetime cardiovascular disease risk.',
+      fullDescription: `At Veevo Health, I built a survival modeling engine from the ground up to predict lifetime cardiovascular disease risk across 500,000+ longitudinal patient records. The system combines traditional biostatistical methods (Fine-Gray competing-risk analysis) with modern deep learning architectures including Cox-Time and Transformer models.
 
-The core of the system utilizes YOLO-v8, one of the most advanced object detection models, trained to recognize over 250 different household objects. This enables the system to provide real-time identification of items in the user's environment. The voice synthesis component, implemented on an FPGA using Verilog, allows for efficient, low-latency audio processing and generation.
+A key technical challenge was handling left truncation — our dataset was entirely left-truncated since individuals only entered the study after surviving to a certain age. This required carefully adjusting loss functions to condition on survival to entry time, avoiding the selection bias that would otherwise overestimate survival.
 
-The integrated conferencing application brings these technologies together, creating a seamless experience where users can interact with their environment through both visual and auditory interfaces. This project demonstrates expertise in deep learning, hardware design, and full-stack application development.`,
-      images: [
-        "https://via.placeholder.com/800x500/333/ffffff?text=YOLO+Object+Detection",
-        "https://via.placeholder.com/800x500/333/ffffff?text=FPGA+Voice+Synthesis",
-        "https://via.placeholder.com/800x500/333/ffffff?text=Integrated+Application"
-      ],
+I designed a dual-head network architecture for CVD versus non-CVD mortality, trained on more than 100,000 patient-years of data. This architecture achieved a 0.07 gain in C-index and 25% lower Brier score compared to baseline models, enabling individualized lifetime risk trajectories. The system also incorporates Inverse Probability of Censoring weighting (IPS) for handling informative censoring in discrete-time survival models.
+
+I also built a real-time evaluation suite with confidence-aware predictions, reducing per-patient uncertainty by 40%. This involved careful consideration of discrete vs continuous time modeling — using discrete-time models when event times are naturally binned (e.g., 6-month follow-ups) and continuous-time models for finer-grained predictions.`,
       features: [
-        "Developed YOLO-v8 model for 250+ household objects detection",
-        "Implemented Voice Synthesis on FPGA using Verilog",
-        "Created integrated conferencing application",
-        "Real-time object recognition and voice feedback",
-        "Optimized model performance for low-latency applications"
+        'Fine-Gray competing-risk analysis combined with Cox-Time and Transformer architectures',
+        'Dual-head network for CVD vs non-CVD mortality on 100K+ patient-years',
+        '0.07 C-index gain and 25% lower Brier score over baselines',
+        'Left truncation handling to correct for selection bias in longitudinal data',
+        'Inverse Probability of Censoring (IPS) weighting for informative censoring',
+        'Real-time evaluation suite reducing per-patient uncertainty by 40%',
       ],
-      stack: ["Python", "Tensorflow", "Verilog", "FPGA", "Computer Vision", "Deep Learning"],
-      challenges: [
-        "Optimizing YOLO-v8 for real-time performance",
-        "Implementing efficient voice synthesis on FPGA hardware",
-        "Integrating multiple systems into a cohesive application"
-      ],
+      stack: ['Python', 'PyTorch', 'Pycox', 'Survival Analysis', 'Transformers', 'Scikit-learn', 'Pandas'],
       results: [
-        "Successfully detected 250+ object classes with high accuracy",
-        "Achieved low-latency voice synthesis on FPGA",
-        "Created a fully functional integrated application"
-      ]
+        'Improved model fit by 18% in log-likelihood across 500K+ patient records',
+        'Enabled individualized lifetime CVD risk trajectories',
+        '40% reduction in per-patient prediction uncertainty',
+      ],
+    },
+    intuition: {
+      title: 'Robotic Teleoperation & ML Platform',
+      org: 'Intuition Core — Founding Engineer',
+      description: 'End-to-end robotic teleoperation pipeline with integrated machine learning, deployed across 5+ real-world locations in San Francisco and Berkeley.',
+      fullDescription: `At Intuition Core, I built the core robotic teleoperation and ML platform from scratch. The system operates in 5+ real-world locations — restaurants, hotels, and laundromats across San Francisco and Berkeley — performing long-horizon manipulation tasks like towel folding, cooking, and delivery.
+
+A major component of the work was the Video MAE (Masked Autoencoder) pipeline — a 3-encoder architecture that processes visual and proprioceptive data for robot learning. The pipeline uses tube masking and temporal striding (sampling every 4th frame) to learn meaningful temporal representations rather than overfitting to adjacent similar frames. Through iterative debugging, we identified and solved key challenges: overfitting to training distributions, difficulty learning proprioception data, and lack of temporal information from consecutive frames.
+
+I designed and configured 15+ robot arms from I2RT, ARX Robotics, AgileX, and HuggingFace, creating seamless workflows for data collection, reinforcement and imitation learning, and fine-tuning. The MLP policy head takes vision embeddings and outputs joint velocities, end-effector poses, and force/torques, with diffusion/flow-matching for trajectory generation.
+
+I collected 10,000+ robotic episodes and trained a pi-zero policy on Piper and ARX x5 robot arms. The full-stack application was built with Supabase (backend), React Native (frontend), and Tauri for MacOS deployment, with Docker containerization for cross-platform support.
+
+This work directly contributed to raising $2.4M at a $24M valuation from investors including Founders Fund.`,
+      features: [
+        'Remote robotic teleoperation operating in 5+ real-world locations',
+        '3-encoder Video MAE pipeline with tube masking and temporal striding',
+        'MLP policy head with vision embeddings, diffusion/flow-matching outputs',
+        '15+ robot arms configured (I2RT, ARX, AgileX, HuggingFace)',
+        '10,000+ robotic episodes collected for pi-zero policy training',
+        'Full-stack app: Supabase + React Native + Tauri + Docker',
+        'Long-horizon tasks: towel folding, cooking, delivery',
+      ],
+      stack: ['Python', 'PyTorch', 'React Native', 'Supabase', 'Tauri', 'Docker', 'MuJoCo', 'CUDA', 'HuggingFace'],
+      results: [
+        'Deployed in 5+ real-world locations across SF and Berkeley',
+        'Helped raise $2.4M at $24M valuation from Founders Fund',
+        'Trained pi-zero policy on 10K+ episodes for long-horizon manipulation',
+      ],
+      demoUrl: 'https://intuition.dev/research/world-model-fashion',
+    },
+    bair: {
+      title: 'Robotic Arm Imitation Learning',
+      org: 'Berkeley Artificial Intelligence Research (BAIR)',
+      description: 'Low-cost robotic arm platform for human-assistive tasks with state-of-the-art imitation learning and reinforcement learning methods.',
+      fullDescription: `At BAIR, I built and deployed a low-cost robotic arm platform designed for human-assistive tasks, specifically a feed-a-person task. The project involved collecting and annotating 200+ real-world episodes of demonstration data.
+
+I trained an Action Chunking Transformer (ACT) imitation learning policy using HuggingFace datasets and Vision-Language-Action (VLA) models, achieving smooth, human-like arm control. The key innovation was implementing a diffusion-based trajectory stitching algorithm with segment-level success extrapolation — this transforms sparse reward signals into dense ones, making it possible to learn from partially successful demonstrations.
+
+To improve task diversity and generalization in unstructured environments, I leveraged curiosity-driven reinforcement learning, which increased the output success rate by approximately 50%. I also designed and integrated vision-language evaluation pipelines powered by transformers for fine-grained debugging and performance evaluation of learned policies, enabling faster iteration cycles.`,
+      features: [
+        'Low-cost robotic arm platform for feed-a-person assistive task',
+        '200+ real-world episodes collected and annotated',
+        'Action Chunking Transformer (ACT) imitation learning policy',
+        'Vision-Language-Action (VLA) model integration',
+        'Diffusion-based trajectory stitching with success extrapolation',
+        'Curiosity-driven RL improving success rate by ~50%',
+        'Vision-language evaluation pipelines for policy debugging',
+      ],
+      stack: ['Python', 'PyTorch', 'HuggingFace', 'Transformers', 'Diffusion Models', 'VLA'],
+      results: [
+        '~50% improvement in success rate via curiosity-driven RL',
+        'Smooth, human-like arm control from imitation learning',
+        'Dense reward signals from sparse demonstrations via trajectory stitching',
+      ],
+    },
+    formula: {
+      title: 'Self-Driving Formula Race Car',
+      org: 'Formula Electric at Berkeley — Autonomous Software Lead',
+      description: 'Led a 50+ student team designing and deploying Berkeley\'s first fully autonomous Formula electric race car on a ~$30K EV platform.',
+      fullDescription: `As Autonomous Software Lead at Formula Electric at Berkeley, I led a team of 50+ student engineers in designing and deploying Berkeley's first fully self-driving Formula electric race car, built on a ~$30K EV platform.
+
+I oversaw the entire system architecture including Robot Operating System (ROS) pipelines with 25+ module nodes and over 4,000 lines of C++ code. I managed live simulation and remote testing infrastructure for full autonomy validation.
+
+The perception stack integrates multimodal inputs: real-time LiDAR and camera data to detect and localize track cones at distances up to ~35m. Using GraphSLAM techniques, we achieved sub-15cm RMS error in mapping. These maps feed into a spline-based trajectory generator with aerodynamic constraints for motion planning and control.
+
+I developed trajectory planning and optimization modules using Python and PyTorch, including dynamic cone-based race-line visualization and SLAM-based mapping, modeling 300+ potential competition driving paths to identify the fastest route under different constraints.
+
+A key achievement was improving real-time processing throughput by ~24% through optimized sensor fusion pipelines — reconfiguring LiDAR and camera data synchronization and simulation modules to reduce latency and boost frame rates.`,
+      features: [
+        'First fully autonomous Formula electric race car at Berkeley',
+        'ROS pipelines: 25+ nodes, 4,000+ lines of C++',
+        'LiDAR + camera perception detecting cones at ~35m range',
+        'GraphSLAM mapping with sub-15cm RMS error',
+        'Spline-based trajectory planning with aerodynamic constraints',
+        '300+ driving path models for route optimization',
+        '~24% improvement in real-time processing throughput',
+      ],
+      stack: ['C++', 'Python', 'ROS', 'PyTorch', 'LiDAR', 'GraphSLAM', 'OpenCV'],
+      results: [
+        'Built Berkeley\'s first fully self-driving electric race car',
+        'Sub-15cm RMS mapping error with GraphSLAM',
+        '24% faster real-time processing through optimized sensor fusion',
+      ],
+    },
+    1: {
+      title: 'Voice Recognition & Object Detection Model',
+      description: 'Advanced computer vision and voice synthesis system combining YOLO-v8 object detection with FPGA-based voice processing.',
+      fullDescription: `This project integrates state-of-the-art computer vision with hardware-accelerated voice synthesis. The system uses YOLO-v8 trained to recognize over 250 household objects, combined with an FPGA-based voice synthesis module implemented in Verilog for low-latency audio processing.
+
+The integrated conferencing application brings visual object detection and auditory feedback together, enabling users to interact with their environment through both visual and auditory interfaces. The project required expertise across deep learning, FPGA hardware design, and full-stack application development.`,
+      features: [
+        'YOLO-v8 model detecting 250+ household objects',
+        'Voice synthesis on FPGA using Verilog',
+        'Integrated conferencing application',
+        'Real-time object recognition with voice feedback',
+      ],
+      stack: ['Python', 'TensorFlow', 'Verilog', 'FPGA', 'Computer Vision'],
+      results: [
+        'Detected 250+ object classes with high accuracy',
+        'Achieved low-latency voice synthesis on FPGA',
+        'Fully functional integrated application',
+      ],
     },
     2: {
-      id: 2,
-      title: "RISC-V Neural Network",
-      description: "Low-level neural network implementation at the assembly level with practical applications in stock market analysis.",
-      fullDescription: `This project demonstrates deep understanding of computer architecture and machine learning by implementing a complete neural network at the assembly level. Built on the RISC-V instruction set architecture, this project showcases the ability to work with low-level programming while maintaining the complexity of machine learning algorithms.
+      title: 'RISC-V Neural Network',
+      description: 'Neural network implementation at the assembly level with practical applications in stock market analysis.',
+      fullDescription: `This project implements a complete neural network at the assembly level on the RISC-V instruction set architecture. It includes matrix multiplication and ReLU activation functions written entirely in assembly, with a memory-efficient architecture utilizing 10+ cache levels for performance optimization.
 
-The neural network implementation includes matrix multiplication and ReLU activation functions, all written in assembly language. The architecture was designed with memory efficiency in mind, utilizing over 10 different cache levels to optimize performance. The system uses 32-bit registers to create a full machine learning interface capable of processing complex data.
-
-The practical application of this system in stock market analysis demonstrates the real-world utility of the implementation. This project required expertise in computer architecture, assembly programming, and machine learning fundamentals.`,
-      images: [
-        "https://via.placeholder.com/800x500/333/ffffff?text=RISC-V+Architecture",
-        "https://via.placeholder.com/800x500/333/ffffff?text=Assembly+Implementation",
-        "https://via.placeholder.com/800x500/333/ffffff?text=Stock+Market+Analysis"
-      ],
+The system uses 32-bit registers to create a full machine learning interface and was applied to stock market prediction and analysis.`,
       features: [
-        "Implemented matrix multiplication and ReLu in assembly",
-        "Designed memory-efficient architecture with 10+ caches",
-        "Created full machine learning interface using 32-bit registers",
-        "Applied to stock market prediction and analysis",
-        "Optimized for performance at the hardware level"
+        'Matrix multiplication and ReLU in assembly',
+        'Memory-efficient architecture with 10+ cache levels',
+        'Full ML interface using 32-bit registers',
+        'Applied to stock market prediction',
       ],
-      stack: ["C", "C++", "Assembly", "Logism", "RISC-V", "Computer Architecture"],
-      challenges: [
-        "Implementing complex algorithms in assembly language",
-        "Designing efficient memory architecture with multiple cache levels",
-        "Optimizing performance for real-time stock market analysis"
-      ],
+      stack: ['C', 'C++', 'Assembly', 'RISC-V', 'Logisim'],
       results: [
-        "Successfully implemented complete neural network in assembly",
-        "Achieved efficient memory usage with multi-level cache system",
-        "Applied system to stock market analysis with promising results"
-      ]
+        'Complete neural network in assembly',
+        'Efficient multi-level cache system',
+        'Applied to stock market analysis',
+      ],
     },
     3: {
-      id: 3,
-      title: "MAE Encoder Pipeline",
-      description: "Advanced triple-stream Masked-Autoencoder for multimodal data processing and analysis.",
-      fullDescription: `The MAE (Masked Autoencoder) Encoder Pipeline represents a cutting-edge approach to multimodal machine learning. This project implements a sophisticated triple-stream architecture designed to process both visual and proprioceptive data simultaneously, enabling the system to understand complex interactions between visual perception and physical movement.
+      title: 'MAE Encoder Pipeline',
+      description: 'Triple-stream Masked Autoencoder for multimodal data processing and robot learning.',
+      fullDescription: `The MAE Encoder Pipeline implements a 3-encoder Video MAE architecture for processing visual and proprioceptive data from robotic manipulation tasks. The system was trained on 500+GB of multimodal training data using CUDA batch parallelization.
 
-The system was trained on over 500GB of multimodal training data, requiring sophisticated data pipeline management and optimization. The implementation leverages CUDA for batch parallelization, enabling efficient processing of large-scale datasets. The architecture processes visual data streams alongside proprioceptive feedback, creating a comprehensive understanding of spatial and temporal relationships.
-
-This project demonstrates expertise in deep learning, computer vision, and large-scale data processing. The use of advanced tools like PyTorch, Tensorboard, and Weights & Biases showcases proficiency in modern ML development workflows.`,
-      images: [
-        "https://via.placeholder.com/800x500/333/ffffff?text=Triple+Stream+Architecture",
-        "https://via.placeholder.com/800x500/333/ffffff?text=Data+Processing+Pipeline",
-        "https://via.placeholder.com/800x500/333/ffffff?text=CUDA+Parallelization"
-      ],
+Key technical challenges included addressing overfitting (the model memorized training distributions rather than learning temporal understanding), implementing temporal striding to capture meaningful motion across frames, and learning proprioception data which proved significantly harder than visual reconstruction. Solutions included tube masking, temporal stride of 4 frames, and 3D patch construction by combining adjacent frames.`,
       features: [
-        "Engineered triple-stream architecture for visual and proprioceptive data",
-        "Processed 500+GB of training data",
-        "Implemented batch parallelization with CUDA",
-        "Advanced masked autoencoder implementation",
-        "Real-time multimodal data processing"
+        'Triple-stream architecture for visual and proprioceptive data',
+        '500+GB training data with CUDA parallelization',
+        'Tube masking and temporal striding for temporal learning',
+        '3D patch construction for strengthened temporal correlation',
       ],
-      stack: ["PyTorch", "OpenCV", "Gym", "NumPy", "Tensorboard", "CUDA", "Weights & Biases"],
-      challenges: [
-        "Managing and processing 500+GB of training data",
-        "Designing efficient triple-stream architecture",
-        "Optimizing CUDA parallelization for maximum performance"
-      ],
+      stack: ['PyTorch', 'OpenCV', 'CUDA', 'NumPy', 'TensorBoard', 'Weights & Biases'],
       results: [
-        "Successfully processed massive multimodal dataset",
-        "Achieved efficient parallel processing with CUDA",
-        "Created robust architecture for multimodal learning"
+        'Processed massive multimodal dataset',
+        'Achieved visual reconstruction with temporal understanding',
+        'Robust architecture for robotic manipulation learning',
       ],
-      hasDemo: true,
-      demoUrl: "https://intuition.dev/news/world-model-fashion"
+      demoUrl: 'https://intuition.dev/research/world-model-fashion',
     },
     4: {
-      id: 4,
-      title: "Mujoco Simulator Robot Arm",
-      description: "Comprehensive robot arm simulation and data collection system with multiple environment support.",
-      fullDescription: `This project involves the development of a comprehensive robot arm simulation and data collection system using the Mujoco physics engine. The system supports multiple robot arm models including SO100, Franka, and Arx, providing a flexible platform for robotics research and development.
-
-The data collection pipeline incorporates inverse-kinematics calculations to generate realistic robot movements. The system implements end-effector joint calculations to ensure accurate positioning and movement. Over 5 hours of robot task data were collected, providing valuable datasets for machine learning and robotics research.
-
-The project demonstrates expertise in robotics simulation, physics engines, and data collection methodologies. The use of modern tools like Huggingface, Pandas, and PyArrow showcases proficiency in data management and ML workflows.`,
-      images: [
-        "https://via.placeholder.com/800x500/333/ffffff?text=Mujoco+Simulation",
-        "https://via.placeholder.com/800x500/333/ffffff?text=Robot+Arm+Control",
-        "https://via.placeholder.com/800x500/333/ffffff?text=Data+Collection+Pipeline"
-      ],
+      title: 'MuJoCo Simulator Robot Arm',
+      description: 'Robot arm simulation and data collection system supporting multiple arms with inverse kinematics.',
+      fullDescription: `A comprehensive robot arm simulation system using MuJoCo physics engine supporting SO100, Franka, and Arx robot arms. The data collection pipeline incorporates inverse kinematics calculations for realistic movements, with end-effector joint calculations for accurate positioning. Over 5 hours of robot task data were collected for ML research.`,
       features: [
-        "Designed data collection pipeline with inverse-kinematics",
-        "Implemented end-effector joint calculations",
-        "Collected 5+ hours of robot task data",
-        "Supported multiple robot arms (SO100, Franka, Arx)",
-        "Real-time simulation and data recording"
+        'Multi-arm support: SO100, Franka, Arx',
+        'Inverse kinematics data collection pipeline',
+        '5+ hours of robot task data collected',
+        'Real-time simulation and recording',
       ],
-      stack: ["Mujoco", "Huggingface", "CAD", "Pandas", "PyArrow", "PySide6", "MediaPy"],
-      challenges: [
-        "Implementing accurate inverse-kinematics calculations",
-        "Supporting multiple robot arm models with different configurations",
-        "Collecting and managing large volumes of simulation data"
-      ],
+      stack: ['MuJoCo', 'Python', 'HuggingFace', 'Pandas', 'PyArrow', 'PySide6'],
       results: [
-        "Successfully collected 5+ hours of high-quality robot task data",
-        "Created flexible system supporting multiple robot arm models",
-        "Developed efficient data collection and processing pipeline"
+        '5+ hours of high-quality robot task data',
+        'Flexible multi-arm support system',
+        'Efficient data collection pipeline',
       ],
-      hasProject: true,
-      projectUrl: "https://github.com/arulloomba1/mujoco_data_collector.git"
+      githubUrl: 'https://github.com/arulloomba1/mujoco_data_collector',
     },
     5: {
-      id: 5,
-      title: "Snek Game",
-      description: "Feature-rich snake game with extensive customization options and cross-platform support.",
-      fullDescription: `Snek Game is a comprehensive implementation of the classic snake game, featuring extensive customization options and cross-platform support. The project consists of over 1000 lines of C/C++ code, implementing custom game mechanics and advanced features.
-
-The game includes 30+ unique snake characters, each with distinct visual styles and behaviors. The system features 75+ modular map layouts, providing diverse gameplay experiences. The JavaScript-based UI/UX ensures cross-platform compatibility, allowing the game to run seamlessly across different operating systems.
-
-This project demonstrates expertise in game development, graphics programming with OpenGL, and cross-platform development. The use of tools like Docker and Valgrind showcases proficiency in containerization and debugging.`,
-      images: [
-        "https://via.placeholder.com/800x500/333/ffffff?text=Game+Interface",
-        "https://via.placeholder.com/800x500/333/ffffff?text=Custom+Snake+Characters",
-        "https://via.placeholder.com/800x500/333/ffffff?text=Modular+Map+Layouts"
-      ],
+      title: 'Snek Game',
+      description: 'Feature-rich snake game with extensive customization and cross-platform support.',
+      fullDescription: `A comprehensive snake game with 1000+ lines of C/C++, featuring 30+ unique snake characters with distinct visual styles, 75+ modular map layouts, and cross-platform JavaScript UI/UX.`,
       features: [
-        "Developed 1000+ lines of C/C++ code with custom game mechanics",
-        "Created 30+ unique snake characters and 75+ modular map layouts",
-        "Implemented JavaScript-based UI/UX for cross-platform support",
-        "Advanced graphics rendering with OpenGL",
-        "Comprehensive game state management"
+        '1000+ lines of C/C++ with custom game mechanics',
+        '30+ unique snake characters',
+        '75+ modular map layouts',
+        'Cross-platform JavaScript UI',
       ],
-      stack: ["C", "C++", "Makefile", "Git", "OpenGL", "Valgrind", "Docker"],
-      challenges: [
-        "Implementing complex game mechanics in C/C++",
-        "Creating modular map system with 75+ layouts",
-        "Ensuring cross-platform compatibility"
-      ],
+      stack: ['C', 'C++', 'OpenGL', 'Docker', 'Valgrind'],
       results: [
-        "Successfully created feature-rich game with 1000+ lines of code",
-        "Developed extensive customization system with 30+ characters",
-        "Achieved cross-platform compatibility"
-      ]
+        'Feature-rich game with extensive customization',
+        'Cross-platform compatibility',
+      ],
     },
     6: {
-      id: 6,
-      title: "S1XT33N Voice-Controlled Robot Car",
-      description: "Autonomous vehicle system with voice command recognition and custom circuit design for optimal performance.",
-      fullDescription: `S1XT33N is an autonomous robot car system that combines voice recognition, custom circuit design, and advanced control systems. The project features a voice-activated control system capable of recognizing 4+ distinct commands, enabling intuitive human-robot interaction.
-
-The custom motor controller and power management circuits were designed from scratch, requiring expertise in analog circuit design and embedded systems. The system utilizes PWM (Pulse Width Modulation) and current-controlled sources for precise digital motor regulation. The voice classification system uses PCA (Principal Component Analysis) with optimized hyperparameters to achieve high accuracy in command recognition.
-
-This project demonstrates expertise in embedded systems, signal processing, analog circuit design, and machine learning. The integration of hardware and software components showcases a comprehensive understanding of robotics systems.`,
-      images: [
-        "https://via.placeholder.com/800x500/333/ffffff?text=Robot+Car+Design",
-        "https://via.placeholder.com/800x500/333/ffffff?text=Custom+Circuit+Board",
-        "https://via.placeholder.com/800x500/333/ffffff?text=Voice+Control+System"
-      ],
+      title: 'S1XT33N Voice-Controlled Robot Car',
+      description: 'Autonomous vehicle with voice command recognition and custom circuit design.',
+      fullDescription: `S1XT33N is an autonomous robot car with voice-activated control recognizing 4+ distinct commands. Features custom motor controllers and power management circuits, PWM regulation, and PCA-based voice classification with optimized hyperparameters.`,
       features: [
-        "Developed voice-activated control system with 4+ command recognition",
-        "Designed and implemented custom motor controller and power management circuits",
-        "Applied PWM and current-controlled sources for digital motor regulation",
-        "Implemented PCA-based voice classification with optimized hyperparameters",
-        "Real-time voice processing and motor control"
+        'Voice-activated control with 4+ commands',
+        'Custom motor controller and power management circuits',
+        'PWM and current-controlled sources for motor regulation',
+        'PCA-based voice classification',
       ],
-      stack: ["Arduino", "Embedded C", "PWM", "PCA", "Signal Processing", "Analog Circuits"],
-      challenges: [
-        "Designing custom motor controller circuits",
-        "Implementing accurate voice recognition with PCA",
-        "Integrating hardware and software components"
-      ],
+      stack: ['Arduino', 'Embedded C', 'PWM', 'PCA', 'Signal Processing', 'Analog Circuits'],
       results: [
-        "Successfully created voice-controlled robot car system",
-        "Achieved high accuracy in voice command recognition",
-        "Developed efficient custom circuit designs"
-      ]
-    }
+        'Functional voice-controlled robot car',
+        'High accuracy voice command recognition',
+        'Custom circuit designs',
+      ],
+    },
   };
 
   const project = projects[id];
 
   if (!project) {
     return (
-      <div className="project-detail-page">
-        <div className="project-detail-container">
+      <div className="detail-page">
+        <div className="detail-container">
           <h1>Project Not Found</h1>
-          <button onClick={() => navigate('/projects')}>Back to Projects</button>
+          <button onClick={() => navigate('/projects')} className="back-link">Back to Projects</button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="project-detail-page">
-      <div className="project-detail-container">
-        <button className="back-button" onClick={() => navigate('/projects')}>
-          ← Back to Projects
-        </button>
+    <div className="detail-page">
+      <div className="detail-container">
+        <motion.button
+          className="back-link"
+          onClick={() => navigate('/projects')}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          &larr; Back to Projects
+        </motion.button>
 
-        <div className="project-header">
+        <motion.div className="detail-hero" variants={fadeUp} initial="hidden" animate="visible" custom={0}>
+          {project.org && <p className="detail-org">{project.org}</p>}
           <h1>{project.title}</h1>
-          <p className="project-subtitle">{project.description}</p>
-        </div>
+          <p className="detail-subtitle">{project.description}</p>
+        </motion.div>
 
-        <div className="project-content">
-          <div className="project-main">
-            <div className="project-description">
-              <h2>Overview</h2>
-              <p>{project.fullDescription}</p>
+        <div className="detail-body">
+          <motion.section className="detail-section" variants={fadeUp} initial="hidden" animate="visible" custom={1}>
+            <h2>Overview</h2>
+            <div className="detail-text">
+              {project.fullDescription.split('\n\n').map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
             </div>
+          </motion.section>
 
-            <div className="project-images">
-              <h2>Project Images</h2>
-              <div className="images-grid">
-                {project.images.map((image, index) => (
-                  <div key={index} className="image-item">
-                    <img src={image} alt={`${project.title} - Image ${index + 1}`} />
-                  </div>
-                ))}
-              </div>
+          <motion.section className="detail-section" variants={fadeUp} initial="hidden" animate="visible" custom={2}>
+            <h2>Key Features</h2>
+            <ul className="detail-list">
+              {project.features.map((f, i) => (
+                <li key={i}>{f}</li>
+              ))}
+            </ul>
+          </motion.section>
+
+          <motion.section className="detail-section" variants={fadeUp} initial="hidden" animate="visible" custom={3}>
+            <h2>Technology Stack</h2>
+            <div className="detail-tags">
+              {project.stack.map((tech) => (
+                <span key={tech} className="detail-tag">{tech}</span>
+              ))}
             </div>
+          </motion.section>
 
-            <div className="project-features">
-              <h2>Key Features</h2>
-              <ul>
-                {project.features.map((feature, index) => (
-                  <li key={index}>{feature}</li>
-                ))}
-              </ul>
-            </div>
+          <motion.section className="detail-section" variants={fadeUp} initial="hidden" animate="visible" custom={4}>
+            <h2>Results</h2>
+            <ul className="detail-list results">
+              {project.results.map((r, i) => (
+                <li key={i}>{r}</li>
+              ))}
+            </ul>
+          </motion.section>
 
-            <div className="project-stack">
-              <h2>Technology Stack</h2>
-              <div className="stack-tags">
-                {project.stack.map((tech, index) => (
-                  <span key={index} className="stack-tag">{tech}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="project-challenges">
-              <h2>Challenges</h2>
-              <ul>
-                {project.challenges.map((challenge, index) => (
-                  <li key={index}>{challenge}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="project-results">
-              <h2>Results</h2>
-              <ul>
-                {project.results.map((result, index) => (
-                  <li key={index}>{result}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="project-links">
-              {project.hasDemo && (
-                <a 
-                  href={project.demoUrl} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-link"
-                >
-                  View Project Demo
+          {(project.demoUrl || project.githubUrl) && (
+            <motion.div className="detail-links" variants={fadeUp} initial="hidden" animate="visible" custom={5}>
+              {project.demoUrl && (
+                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="detail-link">
+                  View Demo &rarr;
                 </a>
               )}
-              {project.hasProject && (
-                <a 
-                  href={project.projectUrl} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-link"
-                >
-                  View on GitHub
+              {project.githubUrl && (
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="detail-link secondary">
+                  View on GitHub &rarr;
                 </a>
               )}
-            </div>
-          </div>
+            </motion.div>
+          )}
         </div>
       </div>
     </div>
@@ -320,6 +328,3 @@ This project demonstrates expertise in embedded systems, signal processing, anal
 };
 
 export default ProjectDetail;
-
-
-

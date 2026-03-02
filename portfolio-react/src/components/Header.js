@@ -7,30 +7,31 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-
-
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
+
   const navItems = [
-    { path: '/', label: 'Home', icon: '' },
-    { path: '/terminal', label: 'Terminal', icon: '' },
-    { path: '/projects', label: 'Projects', icon: '' },
-    { path: '/robotics', label: 'Robotics', icon: '' }
+    { path: '/', label: 'Home' },
+    { path: '/about', label: 'About' },
+    { path: '/projects', label: 'Projects' },
+    { path: '/robotics', label: 'Robotics' },
+    { path: '/terminal', label: 'Terminal' },
   ];
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-content">
         <Link to="/" className="logo">
-          <span className="logo-icon">λ</span>
-          <span className="logo-text">Arul Loomba Portfolio</span>
+          Arul Loomba
         </Link>
 
         <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
@@ -39,19 +40,17 @@ const Header = () => {
               key={item.path}
               to={item.path}
               className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
-              onClick={() => setIsMenuOpen(false)}
             >
-              <span className="nav-icon">{item.icon}</span>
-              <span className="nav-label">{item.label}</span>
+              {item.label}
             </Link>
           ))}
         </nav>
 
-        <button 
+        <button
           className={`hamburger ${isMenuOpen ? 'open' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Menu"
         >
-          <span></span>
           <span></span>
           <span></span>
         </button>

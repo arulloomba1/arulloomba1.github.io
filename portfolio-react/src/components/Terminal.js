@@ -267,7 +267,7 @@ const Terminal = () => {
                       position: 'absolute',
                       visibility: 'hidden',
                       whiteSpace: 'pre',
-                      fontFamily: '"Times New Roman", Times, serif',
+                      fontFamily: "'SF Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace",
                       fontSize: '14px'
                     }}
                   />
