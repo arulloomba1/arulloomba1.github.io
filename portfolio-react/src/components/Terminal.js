@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
 import './Terminal.css';
 
@@ -68,6 +69,7 @@ const Terminal = () => {
     awards: `
       - 4x Dean's List Award (2023-2025) UC Berkeley, EECS <br>
       - 2nd Place MOOC AI Hackathon 2025, UC Berkeley (Historical AI Debate Agent) <br>
+      - Cal Leadership Award, UC Berkeley <br>
     `,
     skills: `
       - Backend Development<br>
@@ -235,6 +237,7 @@ const Terminal = () => {
 
   useEffect(() => {
     updateAutocompleteHint(inputValue);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
   return (
