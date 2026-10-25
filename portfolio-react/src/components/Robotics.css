@@ -1,69 +1,109 @@
-.robotics-page {
-  min-height: calc(100vh - var(--header-height));
+/* Robotics */
+
+.robotics-hero {
+  padding-top: 100px;
 }
 
-.robotics-container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 40px 100px;
+.robotics-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.robotics-header {
-  padding: 80px 0 40px;
+.robotics-intro .pill-row {
+  margin-top: 12px;
 }
 
-.robotics-header h1 {
-  font-size: 48px;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  margin-bottom: 12px;
+.robotics-videos {
+  padding-top: 140px;
 }
 
-.robotics-header p {
-  font-size: 17px;
-  color: var(--color-text-secondary);
-  max-width: 560px;
-}
-
-.videos-grid {
+.video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 44px 24px;
 }
 
-.video-item {
-  border-radius: 12px;
+.video-tile {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.video-tile.wide {
+  grid-column: span 2;
+}
+
+.video-frame {
+  border-radius: 22px;
   overflow: hidden;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  transition: all var(--transition);
+  background: var(--ink);
+  height: 340px;
 }
 
-.video-item:hover {
-  border-color: var(--color-border-hover);
-  transform: translateY(-2px);
+.video-tile.wide .video-frame {
+  height: 520px;
 }
 
-.video-item video {
+.video-frame video {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-@media (max-width: 768px) {
-  .robotics-container {
-    padding: 0 20px 60px;
+.video-tile figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.video-title {
+  font: 400 22px var(--serif);
+}
+
+.video-num {
+  font: 400 11px var(--mono);
+  color: var(--muted);
+}
+
+@media (max-width: 1180px) {
+  .video-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .robotics-header {
-    padding: 40px 0 32px;
+  .video-frame {
+    height: 280px;
   }
 
-  .robotics-header h1 {
-    font-size: 36px;
+  .video-tile.wide .video-frame {
+    height: 420px;
+  }
+}
+
+@media (max-width: 860px) {
+  .robotics-hero {
+    padding-top: 40px;
   }
 
-  .videos-grid {
+  .robotics-videos {
+    padding-top: 56px;
+  }
+
+  .video-grid {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .video-tile.wide {
+    grid-column: auto;
+  }
+
+  .video-frame,
+  .video-tile.wide .video-frame {
+    height: 240px;
+    border-radius: 18px;
   }
 }
