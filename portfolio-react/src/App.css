@@ -32,6 +32,11 @@
   z-index: 1;
 }
 
+.main-content.no-header {
+  margin-top: 0;
+  min-height: 100vh;
+}
+
 a {
   color: var(--color-text);
   text-decoration: none;

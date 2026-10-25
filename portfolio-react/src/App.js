@@ -40,15 +40,23 @@ function AnimatedRoutes() {
   );
 }
 
+// Home carries its own header as part of the editorial layout.
+function Layout() {
+  const isHome = useLocation().pathname === '/';
+  return (
+    <div className="App">
+      {!isHome && <Header />}
+      <main className={`main-content ${isHome ? 'no-header' : ''}`}>
+        <AnimatedRoutes />
+      </main>
+    </div>
+  );
+}
+
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Header />
-        <main className="main-content">
-          <AnimatedRoutes />
-        </main>
-      </div>
+      <Layout />
     </Router>
   );
 }
