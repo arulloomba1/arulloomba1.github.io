@@ -45,7 +45,7 @@ const Terminal = () => {
         <span>     /  \\     </span>  OS: Arch Linux
         <span>    /    \\    </span>  Hostname: arulloomba.github.io
         <span>   /  /\\  \\   </span>  Time: ${currentTime}
-        <span>  /  (--)  \\  </span>  Email: <a href="mailto:arulloomba@berkeley.edu" class="custom-link">arulloomba@berkeley.edu</a>
+        <span>  /  (--)  \\  </span>  Email: <a href="mailto:arulloomba@gmail.com" class="custom-link">arulloomba@gmail.com</a>
         <span> /  /    \\  \\ </span>  GitHub: <a href="https://GitHub.com/arulloomba1" target="_blank" class="custom-link">GitHub.com/arulloomba1</a>
         <span>/___\\    /___\\</span>  LinkedIn: <a href="https://LinkedIn.com/in/arul-loomba" target="_blank" class="custom-link">LinkedIn.com/in/arul-loomba</a>
         </pre>`;

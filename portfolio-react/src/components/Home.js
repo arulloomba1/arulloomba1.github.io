@@ -32,15 +32,27 @@ const featuredProjects = [
 const apps = [
   {
     name: 'Behind',
-    href: 'https://getbehind.app',
-    blurb: 'eight scores. one card. see where you stand against everyone born your year.',
-    icon: <div className="app-icon app-icon-behind">behind</div>,
+    tagline: 'see where you actually rank',
+    blurb: 'Ranks you against everyone your exact age and gender, worldwide, on six things — privilege, mog, popularity, lore, bag and brainrot — then tells you plainly how far ahead or behind you are.',
+    icon: '/apps/behind-icon.png',
+    site: { href: 'https://getbehind.app', label: 'getbehind.app' },
+    appStore: 'https://apps.apple.com/us/app/behind-self-improvement-coach/id6814665658',
+    media: (
+      <div className="app-media-phones">
+        <img src="/apps/behind-03-reveal-overall.jpg" alt="Behind overall rank reveal" loading="lazy" />
+        <img src="/apps/behind-02-card-pro.jpg" alt="Behind score card" loading="lazy" />
+      </div>
+    ),
   },
   {
     name: 'Tally',
-    href: 'https://www.tally.kitchen/',
-    blurb: 'Habit tracking app that charges you 50 cents every time you slip up and gives it to a friend.',
-    icon: <div className="app-icon app-icon-tally">tally<span>.</span></div>,
+    tagline: 'bet on yourself.',
+    blurb: 'The habit tracker that charges you every time you slip up — and gives it to a friend. Put money on the line, prove it with a photo, and let the feed close the loop.',
+    icon: '/apps/tally-icon.png',
+    site: { href: 'https://www.tally.kitchen/', label: 'tally.kitchen' },
+    media: (
+      <video src="/apps/tally-launch.mp4" poster="/apps/tally-launch-poster.jpg" autoPlay loop muted playsInline />
+    ),
   },
 ];
 
@@ -118,13 +130,27 @@ const Home = () => {
             </div>
             <div className="home-apps-grid">
               {apps.map((app) => (
-                <a key={app.name} href={app.href} target="_blank" rel="noopener noreferrer" className="app-card">
-                  {app.icon}
-                  <div className="app-card-text">
-                    <span className="app-card-name">{app.name}</span>
-                    <span className="app-card-blurb">{app.blurb}</span>
+                <article key={app.name} className={`app-card app-card-${app.name.toLowerCase()}`}>
+                  <a href={app.site.href} target="_blank" rel="noopener noreferrer" className="app-media" aria-label={app.name}>
+                    {app.media}
+                  </a>
+                  <div className="app-info">
+                    <div className="app-id">
+                      <img src={app.icon} alt="" className="app-icon" />
+                      <div className="app-id-text">
+                        <span className="app-card-name">{app.name}</span>
+                        <span className="app-card-tagline">{app.tagline}</span>
+                      </div>
+                    </div>
+                    <p className="app-card-blurb">{app.blurb}</p>
+                    <div className="app-links">
+                      {app.appStore && (
+                        <a href={app.appStore} target="_blank" rel="noopener noreferrer" className="app-pill app-pill-solid">App Store</a>
+                      )}
+                      <a href={app.site.href} target="_blank" rel="noopener noreferrer" className="app-pill">{app.site.label} ↗</a>
+                    </div>
                   </div>
-                </a>
+                </article>
               ))}
             </div>
           </div>
@@ -132,7 +158,7 @@ const Home = () => {
 
         <footer className="home-footer">
           <div data-node="99" className="node" />
-          <a href="mailto:arulloomba@berkeley.edu" className="home-email">arulloomba@berkeley.edu</a>
+          <a href="mailto:arulloomba@gmail.com" className="home-email">arulloomba@gmail.com</a>
           <div className="home-footer-links">
             <a href="https://github.com/arulloomba1" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://linkedin.com/in/arul-loomba/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
